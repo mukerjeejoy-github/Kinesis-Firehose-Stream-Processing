@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script>
+        window.IS_FIREHOSE = "{{ IS_FIREHOSE }}";
+        window.AWS_REGION = "{{ AWS_REGION }}";
+        window.AWS_ACCESS_KEY_ID = "{{ AWS_ACCESS_KEY_ID }}";
+        window.AWS_SECRET_ACCESS_KEY = "{{ AWS_SECRET_ACCESS_KEY }}";
+        window.FIREHOSE_STREAM_NAME = "{{ FIREHOSE_STREAM_NAME }}";
+        window.KINESIS_STREAM_NAME = "{{ KINESIS_STREAM_NAME }}";
+    </script>
+</head>
+
+<body>
+
+    <div id="dashboard-container" class="container">
+        <h1>Member Dashboard</h1>
+
+        <!-- Form to Add or Edit Member -->
+        <div id="member-form-container">
+            <h2 id="form-title">Add Member</h2>
+            <form id="member-form">
+                <input type="hidden" id="member-id" value="">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter name" required>
+                <label for="age">Age:</label>
+                <input type="number" id="age" placeholder="Enter age" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter email" required>
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" placeholder="Enter phone number" required>
+                <label for="address">Address:</label>
+                <input type="text" id="address" placeholder="Enter address" required>
+                <button type="submit">Submit</button>
+                <button type="button" id="cancel-button" class="hidden">Cancel</button>
+            </form>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading-indicator" class="loading hidden">Loading...</div>
+
+        <!-- Member Table -->
+        <table id="member-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody id="member-table-body">
+                <!-- Rows will be populated dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script type="module" src="/static/js/app.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.814.0.min.js"></script>
+</body>
+
+</html>
